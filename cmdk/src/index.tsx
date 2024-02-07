@@ -62,7 +62,7 @@ type GroupProps = Children &
     /** Whether this group is forcibly rendered regardless of filtering. */
     forceMount?: boolean
   }
-type InputProps = Omit<React.ComponentPropsWithoutRef<typeof Primitive.input>, 'value' | 'onChange' | 'type'> & {
+type InputProps = Omit<React.ComponentPropsWithoutRef<typeof Primitive.input>, 'value' | 'onChange'> & {
   /**
    * Optional controlled state for the value of the search input.
    */
@@ -785,6 +785,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, forwardedRe
   return (
     <Primitive.input
       ref={forwardedRef}
+      type="text"
       {...etc}
       cmdk-input=""
       autoComplete="off"
@@ -797,7 +798,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, forwardedRe
       aria-labelledby={context.labelId}
       aria-activedescendant={selectedItemId}
       id={context.inputId}
-      type="text"
       value={isControlled ? props.value : search}
       onChange={(e) => {
         if (!isControlled) {
